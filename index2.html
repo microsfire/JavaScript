@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas condicionais</title>
+</head>
+<body>
+    <h1>Estruturas condicionais</h1>
+
+    <script>
+        var idade = 20;
+        var senha = 'm7c7s7';
+       
+        if(idade >= 18){
+            console.log('Maio de idade:)');
+        }else{
+            console.log('Menor de idade:(');
+        }
+
+        if(idade <= 14){
+            console.log('Criança')
+        }else if(idade >14 && idade < 18){
+            console.log('Adolescente');
+        }else{
+            console.log('Adulto');
+        }
+        
+        //O (==) verifica se o conteudo são iguais
+        if(1 == '1'){
+            console.log('Sim, o conteudo é o mesmo!');
+        }else{
+            console.log('Não,o conteudo são diferentes')
+        }
+
+        //O (===) verifica se o tipo e o conteudo são iguais
+        if(senha === 'm7c7s7'){
+            console.log('Sim, o tipo e o conteudo são os mesmos!');
+        }else{
+            console.log('Não,o tipo e o conteudo são diferentes')
+        }
+
+        var sexo = 'M';
+
+        switch(sexo){
+            case 'M':
+                console.log('Masculino');
+                break;
+            case 'F':
+                console.log('Feminino');
+                break;
+            default:
+                console.log('Desconhecido');
+                break;
+        }
+
+        var s = 'h';
+        var masculino;
+
+        var masc = s === 'm';
+        console.log(masc);
+        
+    </script>
+
+</body>
+</html>
