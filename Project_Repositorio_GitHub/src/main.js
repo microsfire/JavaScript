@@ -28,6 +28,7 @@ class App{
         // Evita o formulario de carregar a pagina
         evento.preventDefault();
 
+
         //Recuperando o valor do input
         let input = this.formulario.querySelector('input[id=repositorio]').value;
 
@@ -36,21 +37,54 @@ class App{
             return; // O return sempre sai da função
         }
 
-        let response = await api.get(`/repos/${input}`);
-        //console.log(response);
-
+        this.buscando();
         
-        let {name, description, html_url, owner: {avatar_url}} = response.data;
+        try{
+            let response = await api.get(`/repos/${input}`);
+            //console.log(response);
 
-        // Adicionando o repositorio na lista
-        this.repositorios.push({
-            nome: name,
-            descricao:description,
-            avatar_url,
-            link:html_url,
-        });
+            
+            let {name, description, html_url, owner: {avatar_url}} = response.data;
+
+            // Adicionando o repositorio na lista
+            this.repositorios.push({
+                nome: name,
+                descricao:description,
+                avatar_url,
+                link:html_url,
+            });
         
-        this.renderizarTela();
+            this.renderizarTela();
+
+        }catch(erro){
+            //Limpa
+            this.lista.removeChild(document.querySelector('.list-group-item-warning'));
+
+            //Limpando msg error
+            let msgErro = this.lista.querySelector('.list-group-item-danger');
+            if(msgErro !== null){
+                this.lista.removeChild(msgErro);
+                this.formulario.querySelector('input[id=repositorio]').focus();
+            }
+
+            //<li>
+            let li = document.createElement('li');
+            li.setAttribute('class', 'list-group list-group-item-danger');
+            let txtErro = document.createTextNode(`O repositorio "${input}" nao existe!`);
+            li.appendChild(txtErro);
+            this.lista.appendChild(li);
+        }
+        
+    }
+    
+    buscando(){
+       
+        //<li>
+        let li = document.createElement('li');
+        li.setAttribute('class', 'list-group list-group-item-warning');
+        let txtBusca = document.createTextNode(`Aguarde buscando o repositorio...`);
+        li.appendChild(txtBusca);
+        this.lista.appendChild(li);
     }
 
     // Renderizar a tela
