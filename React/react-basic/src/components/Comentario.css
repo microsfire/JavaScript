@@ -1,0 +1,42 @@
+.Comentario {
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+    background-color: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0,0,0, .05);
+    display: flex;
+    padding: 1rem;
+    position: relative;
+}
+
+.titulo {
+    margin: 2rem;
+}
+
+.conteudo {
+    margin-left: 1rem;
+    width: 100%;
+}
+.nome {
+    font-size: 1.75rem;
+    margin: .5rem 0 .25rem 0;
+    color: rgb(54, 53, 55);
+}
+.email {
+    color: blue;
+
+}
+.data {
+    text-align: right;
+    color: rgb(53, 3, 77);
+    font-size: .75rem;
+}
+.btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    border: none;
+    background: none;
+    font-size: 1.75rem;
+    color: rgb(124, 3, 3);
+}
