@@ -9,8 +9,8 @@ class Usuarios extends Component {
     super(props)
     this.state = {
       usuarios: [
-        { id: 1, nome: 'João', sobrenome: 'Silva', email: 'joao@mail.com' },
-        { id: 2, nome: 'Maria', sobrenome: 'Santos', email: 'maria@mail.com' }
+        /*{ id: 1, nome: 'João', sobrenome: 'Silva', email: 'joao@mail.com' },
+        { id: 2, nome: 'Maria', sobrenome: 'Santos', email: 'maria@mail.com' }*/
       ]
     }
 
@@ -24,10 +24,38 @@ class Usuarios extends Component {
 
   removerUsuario(usuario) {
     if (window.confirm(`Tem certeza que deseja remover "${usuario.nome} ${usuario.sobrenome}"?`)) {
-      let usuarios = this.state.usuarios
-      usuarios = usuarios.filter(x => x.id !== usuario.id)
-      this.setState({ usuarios: usuarios })
+      //METODO DELETE
+      fetch(`https://reqres.in/api/users/${usuario.id}`,{
+        method: 'DELETE'
+      })
+        .then(resposta =>{
+          console.log(resposta)
+          if(resposta.ok){
+            let usuarios = this.state.usuarios
+            usuarios = usuarios.filter(x => x.id !== usuario.id)
+            this.setState({ usuarios: usuarios })
+          }   
+        })
     }
+  }
+
+  componentDidMount(){
+    //METODO GET o fetch é por padrão
+   fetch('https://reqres.in/api/users')
+    .then(resposta => resposta.json())
+    .then(dados => {
+      //console.log(dados.data)
+
+      const usuarios = dados.data.map(usuario => ({
+        id: usuario.id,
+        nome: usuario.first_name,
+        sobrenome: usuario.last_name,
+        email: usuario.email
+      }))
+      //console.log(usuarios,)
+      //this.setState({usuarios: usuarios})
+      this.setState({usuarios})
+    })
   }
 
   render() {
