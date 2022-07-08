@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import './AdicionarUsuario.css'
+import './AdicionarUsuario.css' 
 
 function AdicionarUsuario(props) {
     
@@ -18,13 +18,13 @@ function AdicionarUsuario(props) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(usuario)
     })
-      .then(resposta => resposta.json())
-      .then(dados => {
-        setNome('')
-        setSobreNome('')
-        setEmail('')
-        props.adicionarUsuario(dados)
-
+      .then(resposta =>{
+        if(resposta.ok){
+          setNome('')
+          setSobreNome('')
+          setEmail('')
+          alert('Usuario cadastrado com sucesso!')
+        }
       })
   }
   return (
