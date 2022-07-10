@@ -2,8 +2,8 @@ import {actionsTypes} from '../constants/frutas';
 
 const INITIAL_STATE = {
     frutas: [
-        {id: 1, nome: 'Melancia', quantidade: 2},
-        {id: 2, nome: 'Laranja', quantidade: 50},
+        /*{id: 1, nome: 'Melancia', quantidade: 2},
+        {id: 2, nome: 'Laranja', quantidade: 50},*/
     ],
 };
 

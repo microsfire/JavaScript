@@ -3,8 +3,8 @@ import ListaFrutas from './components/frutas/ListaFrutas';
 
 function App() {
   return (
-    <div className="App">
-      <ListaFrutas/>
+    <div className="container">
+      <ListaFrutas />
     </div>
   );
 }
