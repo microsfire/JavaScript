@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from "formik";
+import { Formik, Field} from "formik";
 
 const AdicionaCliente = () => {
   return (
@@ -27,37 +27,28 @@ const AdicionaCliente = () => {
         <form onSubmit={props.handleSubmit} noValidate>
           <div className="form-group">
             <label htmlFor="nome">Nome</label>
-            <input 
+            <Field 
             type="text" 
             id="nome" 
             name="nome" 
-            value={props.values.nome} 
-            onChange={props.handleChange} 
-            onBlur={props.handleBlur}
             className={props.errors.nome && props.touched.nome ? 'is-invalid' : ''}/>
           </div>
           {props.errors.nome && props.touched.nome ? (<div className='invalid-feedback'>{props.errors.nome}</div>): null}
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input 
+            <Field 
             id="email" 
             name="email" 
             type="email" 
-            value={props.values.email} 
-            onChange={props.handleChange} 
-            onBlur={props.handleBlur}
             className={props.errors.email && props.touched.email ? 'is-invalid' : ''}/>
           </div>
           {props.errors.email && props.touched.email ? (<div className='invalid-feedback'>{props.errors.email}</div>): null}
           <div className="form-group">
             <label htmlFor="date">Data de Nascimento</label>
-            <input 
+            <Field 
             id="nascimento" 
             name="nascimento" 
             type="date" 
-            value={props.values.nascimento} 
-            onChange={props.handleChange} 
-            onBlur={props.handleBlur}
             className={props.errors.nascimento && props.touched.nascimento ? 'is-invalid' : ''}/>
           </div>
           {props.errors.nascimento && props.touched.nascimento ? (<div className='invalid-feedback'>{props.errors.nascimento}</div>): null}
