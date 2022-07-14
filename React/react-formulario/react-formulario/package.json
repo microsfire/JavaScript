@@ -10,11 +10,12 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "serve": "^14.0.0",
     "yup": "^0.32.11"
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "serv -s build",
+    "start": "serve -s build",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
