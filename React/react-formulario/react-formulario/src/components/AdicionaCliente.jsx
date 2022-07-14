@@ -1,6 +1,22 @@
 import React from 'react';
-import { Formik, Field} from "formik";
+import { Formik, Field, useField} from "formik";
 
+const Campo = ({ label,...props }) => {
+  const [field, meta] = useField(props);
+
+  return (
+    <div className="form-group">
+      <label htmlFor={props.id}>{label}</label>
+      <input
+        {...field}
+        {...props}
+        className={meta.error && meta.touched ? 'is-invalid': ''}
+        />
+        {meta.error && meta.touched ? (<div className='invalid-feedback'>{meta.error}</div>
+        ): null}
+    </div>
+  )
+}
 const AdicionaCliente = () => {
   return (
     <>
@@ -25,33 +41,9 @@ const AdicionaCliente = () => {
       onSubmit={(values) => {alert(JSON.stringify(values))}}>
         {(props)=>(
         <form onSubmit={props.handleSubmit} noValidate>
-          <div className="form-group">
-            <label htmlFor="nome">Nome</label>
-            <Field 
-            type="text" 
-            id="nome" 
-            name="nome" 
-            className={props.errors.nome && props.touched.nome ? 'is-invalid' : ''}/>
-          </div>
-          {props.errors.nome && props.touched.nome ? (<div className='invalid-feedback'>{props.errors.nome}</div>): null}
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <Field 
-            id="email" 
-            name="email" 
-            type="email" 
-            className={props.errors.email && props.touched.email ? 'is-invalid' : ''}/>
-          </div>
-          {props.errors.email && props.touched.email ? (<div className='invalid-feedback'>{props.errors.email}</div>): null}
-          <div className="form-group">
-            <label htmlFor="date">Data de Nascimento</label>
-            <Field 
-            id="nascimento" 
-            name="nascimento" 
-            type="date" 
-            className={props.errors.nascimento && props.touched.nascimento ? 'is-invalid' : ''}/>
-          </div>
-          {props.errors.nascimento && props.touched.nascimento ? (<div className='invalid-feedback'>{props.errors.nascimento}</div>): null}
+            <Campo type="text" id="nome" name="nome" label='Nome'/>
+            <Campo id="email"  name="email" type="email" label='Email'/>
+            <Campo id="nascimento" name="nascimento" type="date" label='Data de Nascimento' />
           <button type="submit">Adicionar</button>
         </form>
         )}
